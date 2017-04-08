@@ -1,5 +1,7 @@
 package com.sdsmdg.harjot.firebasetokensynctest;
 
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
@@ -35,10 +37,18 @@ public class InstanceIDService extends FirebaseInstanceIdService {
     /*
      *   Method for synchronising the token with the server.
      *   Since there is no app-server, the Firebase Realtime database is used instead.
+     *
+     *   The intent is created to send the newToken to the MainActivity to update the toeknText via the BroadcastReceiver.
      */
 
-    private void syncTokenWithServer(String token){
+    private void syncTokenWithServer(String newToken) {
+
+        Intent intent = new Intent();
+        intent.setAction(getString(R.string.token_intent_filter));
+        intent.putExtra(getString(R.string.token_intent_extra_key), newToken);
+        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+
         DatabaseReference tokenReference = FirebaseDatabase.getInstance().getReference();
-        tokenReference.child("token").setValue(token);
+        tokenReference.child("token").setValue(newToken);
     }
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FirebaseTokenSyncTest</string>
+    <string name="token_intent_filter">ACTION_TOKEN</string>
+    <string name="token_intent_extra_key">TOKEN</string>
 </resources>
