@@ -16,7 +16,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tokenText = (TextView) findViewById(R.id.token);
-        tokenText.setText(FirebaseInstanceId.getInstance().getToken());
+
+        //Getting the current token. Will return blank if the token needs to be refreshed.
+        String token  = FirebaseInstanceId.getInstance().getToken();
+
+        tokenText.setText(token);
 
     }
 }
