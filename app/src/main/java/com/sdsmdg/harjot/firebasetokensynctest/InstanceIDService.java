@@ -1,7 +1,6 @@
 package com.sdsmdg.harjot.firebasetokensynctest;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,7 +28,7 @@ public class InstanceIDService extends FirebaseInstanceIdService {
 
         Log.d(TAG, newToken);
 
-        syncTokenWithSerevr(newToken);
+        syncTokenWithServer(newToken);
 
     }
 
@@ -38,8 +37,7 @@ public class InstanceIDService extends FirebaseInstanceIdService {
      *   Since there is no app-server, the Firebase Realtime database is used instead.
      */
 
-    private void syncTokenWithSerevr(String token){
-        Toast.makeText(this, "Synchronization started", Toast.LENGTH_SHORT).show();
+    private void syncTokenWithServer(String token){
         DatabaseReference tokenReference = FirebaseDatabase.getInstance().getReference();
         tokenReference.child("token").setValue(token);
     }
