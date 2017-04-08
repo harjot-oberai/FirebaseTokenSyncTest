@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
         tokenText = (TextView) findViewById(R.id.token);
 
-        //Getting the current token. Will return blank if the token needs to be refreshed.
+        // Getting the current token. Will return blank if the token needs to be refreshed
+        // or token cannot be generated due to connection issues and is not cached.
         String token = FirebaseInstanceId.getInstance().getToken();
 
         tokenText.setText(token);
-
     }
 
     /*
